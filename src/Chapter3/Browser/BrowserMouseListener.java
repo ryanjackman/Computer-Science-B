@@ -1,3 +1,5 @@
+package Chapter3.Browser;
+
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 

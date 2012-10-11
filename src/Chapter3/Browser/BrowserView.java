@@ -1,3 +1,5 @@
+package Chapter3.Browser;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Font;
@@ -12,6 +14,8 @@ import java.util.ListIterator;
 public class BrowserView extends JPanel
     implements AdjustmentListener
 {
+  
+  private static final long serialVersionUID = 1L;
   private static final int LINE_HEIGHT = 20;
   private static final int X_OFFSET = LINE_HEIGHT / 2;
   private static final int Y_OFFSET = LINE_HEIGHT / 4;
