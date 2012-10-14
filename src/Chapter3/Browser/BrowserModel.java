@@ -1,39 +1,39 @@
 package Chapter3.Browser;
 
 public class BrowserModel {
+	
+	BrowserView view;
+	int n;
 
 	public BrowserModel(BrowserView view) {
-		// TODO Auto-generated constructor stub
+		this.view = view;
+		n = 0;
 	}
 
 	public void followLink(int n) {
-		// TODO Auto-generated method stub
-		
+		view.update(n);
+		this.n = n;
 	}
 
 	public boolean hasBack() {
-		// TODO Auto-generated method stub
-		return false;
+		return !(n == 0);
 	}
 
 	public boolean hasForward() {
-		// TODO Auto-generated method stub
-		return false;
+		return !(n == view.getLength() - 1);
 	}
 
 	public void home() {
-		// TODO Auto-generated method stub
-		
+		view.update(0);
+		n = 0;
 	}
 
 	public void back() {
-		// TODO Auto-generated method stub
-		
+		view.update(--n);
 	}
 
 	public void forward() {
-		// TODO Auto-generated method stub
-		
+		view.update(++n);
 	}
 
 }

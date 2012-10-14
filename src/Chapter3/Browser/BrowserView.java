@@ -44,6 +44,10 @@ public class BrowserView extends JPanel
     scrollbar.setValue(topLine);
     repaint();
   }
+  
+  public int getLength(){
+	  return textLines.size();
+  }
 
   public int getLineNumber(int x, int y)
   {

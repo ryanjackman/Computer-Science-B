@@ -65,7 +65,7 @@ public class LineCruiser extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		List<String> textLines = loadFile("lines.html");
+		List<String> textLines = loadFile("src/Chapter3/Browser/lines.html");
 		LineCruiser browser = new LineCruiser(textLines);
 		browser.setSize(640, 400);
 		browser.setDefaultCloseOperation(EXIT_ON_CLOSE);
