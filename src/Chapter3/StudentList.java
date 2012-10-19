@@ -20,7 +20,7 @@ public class StudentList {
 			Student temp = (Student) honorsList.dequeue();
 			System.out.println(temp.getName() + " - " + temp.getGPA());
 		}
-
+		
 	}
 
 	public static ListQueue cutAtGPA(ListQueue students, double minGPA) {
