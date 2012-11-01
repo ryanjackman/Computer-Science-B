@@ -1,39 +1,56 @@
 package Chapter3.Browser;
 
+import java.util.Stack;
+
 public class BrowserModel {
 	
 	BrowserView view;
-	int n;
+	Stack<Integer> past;
+	Stack<Integer> future;
+	
+	int position;
 
 	public BrowserModel(BrowserView view) {
 		this.view = view;
-		n = 0;
+		past = new Stack<Integer>();
+		future = new Stack<Integer>();
+		position = 0;
 	}
 
 	public void followLink(int n) {
 		view.update(n);
-		this.n = n;
+		past.push(position);
+		position = n;
+		future.clear();
 	}
 
 	public boolean hasBack() {
-		return !(n == 0);
+		return !past.isEmpty();
 	}
 
 	public boolean hasForward() {
-		return !(n == view.getLength() - 1);
+		return !future.empty();
 	}
 
 	public void home() {
 		view.update(0);
-		n = 0;
+		past.push(position);
+		position = 0;
+		future.clear();
 	}
 
 	public void back() {
-		view.update(--n);
+		int i = (int)past.pop();
+		future.push(position);
+		position = i;
+		view.update(i);
 	}
 
 	public void forward() {
-		view.update(++n);
+		int i = (int)future.pop();
+		past.push(position);
+		position = i;
+		view.update(i);
 	}
 
 }

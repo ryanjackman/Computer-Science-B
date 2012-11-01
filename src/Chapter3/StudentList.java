@@ -14,7 +14,7 @@ public class StudentList {
 		list.enqueue(new Student("Robert", 3.9));
 		list.enqueue(new Student("Calvin", 2.8));
 
-		ListQueue honorsList = cutAtGPA(list, 3.5);
+		ListQueue honorsList = cutAtGPA(list, 1.9);
 
 		while (!honorsList.isEmpty()) {
 			Student temp = (Student) honorsList.dequeue();
