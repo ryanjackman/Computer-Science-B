@@ -10,11 +10,11 @@ public class StudentList {
 		list.enqueue(new Student("Alex", 3.7));
 		list.enqueue(new Student("Bob", 3.4));
 		list.enqueue(new Student("Dale", 3.3));
-		list.enqueue(new Student("Sam", 4.9));
+		list.enqueue(new Student("Bartholomew", 4.9));
 		list.enqueue(new Student("Robert", 3.9));
 		list.enqueue(new Student("Calvin", 2.8));
 
-		ListQueue honorsList = cutAtGPA(list, 1.9);
+		ListQueue honorsList = cutAtGPA(list, 3.5);
 
 		while (!honorsList.isEmpty()) {
 			Student temp = (Student) honorsList.dequeue();
