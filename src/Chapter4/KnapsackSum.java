@@ -7,20 +7,23 @@ public class KnapsackSum {
 	}
 
 	public KnapsackSum() {
-		int[] array = { 1, 2, 3, 4, 6 };
-		System.out.println(knapsackSum(array, 5, 5));
+		int[] array = { 1, 2, 2, 4, 4, 3, 3};
+		System.out.println(knapsackSum(array, array.length, 10));
 	}
 
 	int knapsackSum(int w[], int n, int limit) {
 
 		int temp = 0, j = 0, i;
 
-		for (i = 0; i < n; i++)
+		for (i = 0; i < n; i++) {
+
 			if (w[i] > temp) {
 				temp = w[i];
 				j = i;
 			}
-
+			if (w[i] > limit)
+				w[i] = 0;
+		}
 		if ((limit - temp) < 0)
 			return 0;
 
@@ -30,3 +33,35 @@ public class KnapsackSum {
 
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Credit Clayton Smith
