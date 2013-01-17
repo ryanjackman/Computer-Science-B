@@ -1,4 +1,4 @@
-package Chapter5;
+package Chapter5.MorseCode;
 
 import java.util.TreeMap;
 
@@ -55,7 +55,7 @@ public class MorseCode {
 		addSymbol('?', "..--..");
 
 	}
-	
+
 	/**
 	 * Inserts a letter and its Morse code string into the encoding map and
 	 * calls treeInsert to insert them into the decoding tree.
@@ -74,14 +74,14 @@ public class MorseCode {
 	private static void treeInsert(char letter, String code) {
 		char[] array = code.toCharArray();
 		TreeNode head = decodeTree;
-		for(char c : array){
-			if(c == DOT){
-				if(head.getLeft() == null)
+		for (char c : array) {
+			if (c == DOT) {
+				if (head.getLeft() == null)
 					head.setLeft(new TreeNode(" "));
 				head = head.getLeft();
 			}
-			if(c == DASH){
-				if(head.getRight() == null)
+			if (c == DASH) {
+				if (head.getRight() == null)
 					head.setRight(new TreeNode(" "));
 				head = head.getRight();
 			}
@@ -97,8 +97,8 @@ public class MorseCode {
 	public static String encode(String text) {
 		StringBuffer morse = new StringBuffer(400);
 		char[] array = text.toUpperCase().toCharArray();
-		for( char c : array ){
-			if(codeMap.containsKey(c))
+		for (char c : array) {
+			if (codeMap.containsKey(c))
 				morse.append(codeMap.get(c) + " ");
 			else
 				morse.append(" ");
@@ -115,24 +115,23 @@ public class MorseCode {
 		StringBuffer text = new StringBuffer(100);
 
 		String[] sub = morse.split("[\\s]");
-		for(String s : sub){
-			if(s.equals(" ")){
+		for (String s : sub) {
+			if (s.equals(" ")) {
 				text.append(" ");
-			}
-			else{
+			} else {
 				char[] subC = s.toCharArray();
 				TreeNode head = decodeTree;
-				for (char c : subC ){
-					if(c == DOT)
+				for (char c : subC) {
+					if (c == DOT)
 						head = head.getLeft();
-					if(c == DASH)
+					if (c == DASH)
 						head = head.getRight();
 				}
 				text.append(head.getValue());
 			}
-			
+
 		}
-		
+
 		return text.toString();
 	}
 }
