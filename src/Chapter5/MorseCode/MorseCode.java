@@ -2,6 +2,8 @@ package Chapter5.MorseCode;
 
 import java.util.TreeMap;
 
+import Chapter5.TreeNode;
+
 public class MorseCode {
 	private static final char DOT = '.';
 	private static final char DASH = '-';
