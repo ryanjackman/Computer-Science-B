@@ -1,3 +1,5 @@
+package Chapter5.JavaMessanger;
+
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.FlowLayout;
@@ -20,113 +22,126 @@ import java.util.Set;
 /**
  * Provides a GUI front end for a logged-in user.
  */
-public class MsgWindow extends JFrame
-    implements KeyListener
-{
-  private static final String PROMPT = ">> ";
+public class MsgWindow extends JFrame implements KeyListener {
+	private static final long serialVersionUID = 1L;
 
-  private MsgUser myUser;
-  private JComboBox buddiesList;
-  private JTextArea textArea;
+	private static final String PROMPT = ">> ";
 
-  /**
-   * Constructs a new window for a  given user.
-   * @param u user that will own this window.
-   * @param buddies  a set of buddies for this user.
-   */
-  public MsgWindow (MsgUser u, Set<MsgUser> buddies)
-  {
-    super(u.toString());
+	private MsgUser myUser;
+	@SuppressWarnings("rawtypes")
+	private JComboBox buddiesList;
+	private JTextArea textArea;
 
-    addWindowListener(new WindowAdapter()
-      { public void windowClosing(WindowEvent e) { myUser.quit(); }});
+	/**
+	 * Constructs a new window for a given user.
+	 * 
+	 * @param u
+	 *            user that will own this window.
+	 * @param buddies
+	 *            a set of buddies for this user.
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public MsgWindow(MsgUser u, Set<MsgUser> buddies) {
+		super(u.toString());
 
-    myUser = u;
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				myUser.quit();
+			}
+		});
 
-    buddiesList = new JComboBox(buddies.toArray());
+		myUser = u;
 
-    JPanel talkTo = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-    talkTo.add(new JLabel("Talk to:", JLabel.RIGHT));
-    talkTo.add(buddiesList);
+		buddiesList = new JComboBox(buddies.toArray());
 
-    textArea = new JTextArea(10, 20);
-    textArea.setFont(new Font("Serif", Font.PLAIN, 14));
-    textArea.setLineWrap(true);
-    textArea.setWrapStyleWord(true);
-    textArea.append(PROMPT);
-    textArea.addKeyListener(this);
-    JScrollPane areaScrollPane = new JScrollPane(textArea);
-    areaScrollPane.setVerticalScrollBarPolicy(
-        JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		JPanel talkTo = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		talkTo.add(new JLabel("Talk to:", JLabel.RIGHT));
+		talkTo.add(buddiesList);
 
-    Container c = getContentPane();
-    c.add(talkTo, BorderLayout.NORTH);
-    c.add(areaScrollPane, BorderLayout.CENTER);
+		textArea = new JTextArea(10, 20);
+		textArea.setFont(new Font("Serif", Font.PLAIN, 14));
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
+		textArea.append(PROMPT);
+		textArea.addKeyListener(this);
+		JScrollPane areaScrollPane = new JScrollPane(textArea);
+		areaScrollPane
+				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-    int x = (int)(Math.random()* 500);
-    int y = (int)(Math.random()* 300);
-    setBounds(x, y, 300, 300);
-    setVisible(true);
-  }
+		Container c = getContentPane();
+		c.add(talkTo, BorderLayout.NORTH);
+		c.add(areaScrollPane, BorderLayout.CENTER);
 
-  /**
-   * Adds a buddy to this user's list of buddies.
-   * @param u a buddy to be added to the list.
-   */
-  public void addBuddy(MsgUser u)
-  {
-    buddiesList.addItem(u);
-  }
+		int x = (int) (Math.random() * 500);
+		int y = (int) (Math.random() * 300);
+		setBounds(x, y, 300, 300);
+		setVisible(true);
+	}
 
-  /**
-   * Removes a buddy from this user's list of buddies.
-   * @param u a buddy to be removed from the list.
-   */
-  public void removeBuddy(MsgUser u)
-  {
-    buddiesList.removeItem(u);
-  }
+	/**
+	 * Adds a buddy to this user's list of buddies.
+	 * 
+	 * @param u
+	 *            a buddy to be added to the list.
+	 */
+	@SuppressWarnings("unchecked")
+	public void addBuddy(MsgUser u) {
+		buddiesList.addItem(u);
+	}
 
-  /**
-   * Displays a message on this window.
-   * @param text a message to be displayed.
-   */
-  public void showMessage(String text)
-  {
-    textArea.append(text);
-    textArea.append("\n" + PROMPT);
-  }
+	/**
+	 * Removes a buddy from this user's list of buddies.
+	 * 
+	 * @param u
+	 *            a buddy to be removed from the list.
+	 */
+	public void removeBuddy(MsgUser u) {
+		buddiesList.removeItem(u);
+	}
 
-  /**
-   * Sends a message to the selected buddy.
-   * @param text a message to be sent.
-   */
-  private void sendMessage(String text)
-  {
-    MsgUser u = (MsgUser)buddiesList.getSelectedItem();
-    u.receiveMessage("[" + myUser.getName() + "] " + text);
-    textArea.append(PROMPT);
-  }
+	/**
+	 * Displays a message on this window.
+	 * 
+	 * @param text
+	 *            a message to be displayed.
+	 */
+	public void showMessage(String text) {
+		textArea.append(text);
+		textArea.append("\n" + PROMPT);
+	}
 
-  /**
-   * Processes the <code>Enter</code> key event on this window.
-   */
-  public void keyReleased (KeyEvent e)
-  {
-    int code = e.getKeyCode();
+	/**
+	 * Sends a message to the selected buddy.
+	 * 
+	 * @param text
+	 *            a message to be sent.
+	 */
+	private void sendMessage(String text) {
+		MsgUser u = (MsgUser) buddiesList.getSelectedItem();
+		u.receiveMessage("[" + myUser.getName() + "] " + text);
+		textArea.append(PROMPT);
+	}
 
-    switch(code)
-    {
-      case KeyEvent.VK_ENTER:
-        String msg= textArea.getText();
-        int tail = msg.lastIndexOf(PROMPT) + PROMPT.length();
-        msg = msg.substring(tail).trim();
-        if (msg.length() > 0)
-          sendMessage(msg);
-        break;
-    }
-  }
+	/**
+	 * Processes the <code>Enter</code> key event on this window.
+	 */
+	public void keyReleased(KeyEvent e) {
+		int code = e.getKeyCode();
 
-  public void keyPressed (KeyEvent e) {}
-  public void keyTyped (KeyEvent e) {}
+		switch (code) {
+		case KeyEvent.VK_ENTER:
+			String msg = textArea.getText();
+			int tail = msg.lastIndexOf(PROMPT) + PROMPT.length();
+			msg = msg.substring(tail).trim();
+			if (msg.length() > 0)
+				sendMessage(msg);
+			break;
+		}
+	}
+
+	public void keyPressed(KeyEvent e) {
+	}
+
+	public void keyTyped(KeyEvent e) {
+	}
 }

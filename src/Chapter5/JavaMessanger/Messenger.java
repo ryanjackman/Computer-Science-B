@@ -1,3 +1,5 @@
+package Chapter5.JavaMessanger;
+
 import javax.swing.JFrame;
 
 /**
@@ -12,6 +14,8 @@ public class Messenger
     server.addUser("apscholar5", "no");
     server.addUser("python2008", "no");
     server.addUser("lucytexan", "no");
+    server.addUser("ryan", "ryan");
+    server.addUser("bill", "bill");
 
     LoginWindow window = new LoginWindow("Java Messanger", server);
     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
