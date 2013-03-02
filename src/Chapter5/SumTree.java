@@ -2,7 +2,7 @@ package Chapter5;
 
 public class SumTree {
 	
-	private final int highestValue = 3;
+	private final int highestValue = 16;
 	
 	public static void main (String[] args){
 		new SumTree();
