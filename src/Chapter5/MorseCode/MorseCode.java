@@ -131,9 +131,7 @@ public class MorseCode {
 				}
 				text.append(head.getValue());
 			}
-
 		}
-
 		return text.toString();
 	}
 }
