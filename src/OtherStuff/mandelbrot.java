@@ -60,7 +60,7 @@ public final class mandelbrot {
       for (Thread t:pool) t.start();
       for (Thread t:pool) t.join();
 
-      OutputStream stream = new FileOutputStream("mandelbrot.ppm");
+      OutputStream stream = new FileOutputStream("mandelbrot.pbm");
       stream.write(("P4\n"+N+" "+N+"\n").getBytes());
       for(int i=0;i<N;i++) stream.write(out[i]);
       stream.close();
